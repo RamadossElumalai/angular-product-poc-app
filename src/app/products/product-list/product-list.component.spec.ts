@@ -46,8 +46,8 @@ describe('ProductListComponent', () => {
 
   it(`should get the product list after ngOnInit`, async() => {
     let products: Product[] = [
-      {"id":1,"name":"Laptop", "category":"electornics","description":"note book hp laptop", "amount": "50000"},
-      {"id":2,"name":"Nokia 1100", "category":"electornics","description":"basic mobile", "amount": "1200"},
+      {"id":1,"name":"Laptop", "category":"electornics","description":"note book hp laptop", "price": "50000"},
+      {"id":2,"name":"Nokia 1100", "category":"electornics","description":"basic mobile", "price": "1200"},
     ];
     spyOn(productService, 'getProducts').and.returnValue(of(products));
     component.ngOnInit();
@@ -68,8 +68,8 @@ describe('ProductListComponent', () => {
   it(`should get the product list and displayed in the table`, async() => {
     //arrange
     let products: Product[] = [
-      {"id":1,"name":"Laptop", "category":"electornics","description":"note book hp laptop", "amount": "50000"},
-      {"id":2,"name":"Nokia 1100", "category":"electornics","description":"basic mobile", "amount": "1200"},
+      {"id":1,"name":"Laptop", "category":"electornics","description":"note book hp laptop", "price": "50000"},
+      {"id":2,"name":"Nokia 1100", "category":"electornics","description":"basic mobile", "price": "1200"},
     ];
     spyOn(productService, 'getProducts').and.returnValue(of(products));
     

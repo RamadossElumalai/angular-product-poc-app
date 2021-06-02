@@ -6,7 +6,7 @@
     <form (ngSubmit)="updateProduct(productForm)" #productForm="ngForm">
       <div class="row">
         <div class="col-75">
-          <input type="text" id="pid" name="id" [(ngModel)]="product.id" hidden>
+          <input type="text" id="id" name="id" [(ngModel)]="product.id" hidden>
         </div>
       </div>
       <div class="row">
@@ -14,15 +14,18 @@
           <label for="pname">Product Name</label>
         </div>
         <div class="col-75">
-          <input type="text" id="pname" name="name" placeholder="Product Name.." [(ngModel)]="product.name">
+          <input type="text" id="pname" name="name" placeholder="Product Name.." [(ngModel)]="product.name" #name="ngModel" required>
+          <span class="text-danger" *ngIf="(name.touched && name.errors?.required)">Name is required </span>
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="amount">Amount</label>
+          <label for="price">Price</label>
         </div>
         <div class="col-75">
-          <input type="text" id="amount" name="amount" placeholder="Amount.." [(ngModel)]="product.amount">
+          <input type="text" id="price" name="price" placeholder="Price.." [(ngModel)]="product.price"  #price="ngModel" required pattern="^[0-9]*$">
+          <span class="text-danger" *ngIf="(price.touched && price.errors?.required)">Price is required </span>
+          <span class="text-danger" *ngIf="(price.touched && price.errors?.pattern)">Enter only number </span>
         </div>
       </div>
       <div class="row">
@@ -30,23 +33,24 @@
           <label for="category">Category</label>
         </div>
         <div class="col-75">
-          <select [(ngModel)]="product.category" name="category" id="category">
+          <select [(ngModel)]="product.category" name="category" id="category"  #category="ngModel" required >
             <option *ngFor="let category of categories" value= {{category.value}}>
                {{category.name}}
             </option>
           </select>
+          <span class="text-danger" *ngIf="(category.touched && category.errors?.required)">Category is required </span>
         </div>
       </div>
       <div class="row">
         <div class="col-25">
-          <label for="description">description</label>
+          <label for="description">Description</label>
         </div>
         <div class="col-75">
           <textarea id="description" name="description" placeholder="Write something.." style="height:200px" [(ngModel)]="product.description"></textarea>
         </div>
       </div>
       <div class="row">
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" [disabled]="productForm.invalid">
       </div>
     </form>
   </div>
