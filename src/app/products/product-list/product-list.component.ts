@@ -1,4 +1,4 @@
-import { COMPILER_OPTIONS, Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit {
 
   onDelete(productId: any): void {
     this.productService.deleteProduct(productId).subscribe((data)=>{
-      console.log(data);
       this.products = this.products.filter(x=>x.id != productId);
     })
   }
